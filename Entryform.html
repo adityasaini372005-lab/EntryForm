@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Entry Forms - Student, Employee, Faculty</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    /* Tab container */
+    .tab {
+      overflow: hidden;
+      background-color: #fff;
+      max-width: 600px;
+      margin: 0 auto 30px auto;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    /* Tab buttons */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 20px;
+      transition: 0.3s;
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      width: 33.33%;
+      border-bottom: 3px solid transparent;
+    }
+    .tab button:hover {
+      background-color: #ddd;
+    }
+    .tab button.active {
+      border-bottom: 3px solid #007bff;
+      color: #007bff;
+      background-color: #f0f8ff;
+    }
+    /* Tab content */
+    .tabcontent {
+      display: none;
+      background-color: white;
+      padding: 20px 30px 30px 30px;
+      border-radius: 0 0 8px 8px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    .tabcontent form label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    .tabcontent form input,
+    .tabcontent form select,
+    .tabcontent form textarea {
+      width: 100%;
+      padding: 8px 10px;
+      margin-top: 5px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .tabcontent form input[type="submit"],
+    .tabcontent form input[type="reset"] {
+      width: 48%;
+      padding: 10px;
+      margin-top: 20px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+    .tabcontent form input[type="submit"] {
+      background-color: #007bff;
+    }
+    .tabcontent form input[type="reset"] {
+      background-color: #dc3545;
+      margin-left: 4%;
+    }
+    /* Error messages */
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Entry Forms for Student, Employee, and Faculty Details</h2>
+
+  <div class="tab">
+    <button class="tablinks active" onclick="openForm(event, 'Student')">Student Details</button>
+    <button class="tablinks" onclick="openForm(event, 'Employee')">Employee Information</button>
+    <button class="tablinks" onclick="openForm(event, 'Faculty')">Faculty Details</button>
+  </div>
+
+  <!-- Student Details Form -->
+  <div id="Student" class="tabcontent" style="display: block;">
+    <form id="studentForm" novalidate>
+      <label for="studentName">Full Name:</label>
+      <input type="text" id="studentName" name="studentName" required />
+      <div class="error" id="studentNameError"></div>
+
+      <label for="studentId">Student ID:</label>
+      <input type="text" id="studentId" name="studentId" required />
+      <div class="error" id="studentIdError"></div>
+
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" required />
+      <div class="error" id="dobError"></div>
+
+      <label for="gender">Gender:</label>
+      <select id="gender" name="gender" required>
+        <option value="">-- Select --</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div class="error" id="genderError"></div>
+
+      <label for="studentEmail">Email Address:</label>
+      <input type="email" id="studentEmail" name="studentEmail" />
+      <div class="error" id="studentEmailError"></div>
+
+      <label for="studentPhone">Phone Number:</label>
+      <input type="tel" id="studentPhone" name="studentPhone" maxlength="10" />
+      <div class="error" id="studentPhoneError"></div>
+
+      <label for="studentAddress">Address:</label>
+      <textarea id="studentAddress" name="studentAddress" rows="4"></textarea>
+
+      <label for="departmentStudent">Department:</label>
+      <input type="text" id="departmentStudent" name="departmentStudent" />
+
+      <label for="course">Course Enrolled:</label>
+      <input type="text" id="course" name="course" />
+
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </div>
+
+  <!-- Employee Information Form -->
+  <div id="Employee" class="tabcontent">
+    <form id="employeeForm" novalidate>
+      <label for="empId">Employee ID:</label>
+      <input type="text" id="empId" name="empId" required />
+      <div class="error" id="empIdError"></div>
+
+      <label for="empName">Full Name:</label>
+      <input type="text" id="empName" name="empName" required />
+      <div class="error" id="empNameError"></div>
+
+      <label for="departmentEmp">Department:</label>
+      <input type="text" id="departmentEmp" name="departmentEmp" required />
+      <div class="error" id="departmentEmpError"></div>
+
+      <label for="designation">Designation:</label>
+      <input type="text" id="designation" name="designation" required />
+      <div class="error" id="designationError"></div>
+
+      <label for="empEmail">Email Address:</label>
+      <input type="email" id="empEmail" name="empEmail" />
+      <div class="error" id="empEmailError"></div>
+
+      <label for="empPhone">Phone Number:</label>
+      <input type="tel" id="empPhone" name="empPhone" maxlength="10" />
+      <div class="error" id="empPhoneError"></div>
+
+      <label for="empAddress">Address:</label>
+      <textarea id="empAddress" name="empAddress" rows="4"></textarea>
+
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </div>
+
+  <!-- Faculty Details Form -->
+  <div id="Faculty" class="tabcontent">
+    <form id="facultyForm" novalidate>
+      <label for="facultyId">Faculty ID:</label>
+      <input type="text" id="facultyId" name="facultyId" required />
+      <div class="error" id="facultyIdError"></div>
+
+      <label for="facultyName">Full Name:</label>
+      <input type="text" id="facultyName" name="facultyName" required />
+      <div class="error" id="facultyNameError"></div>
+
+      <label for="specialization">Specialization:</label>
+      <input type="text" id="specialization" name="specialization" required />
+      <div class="error" id="specializationError"></div>
+
+      <label for="experience">Years of Experience:</label>
+      <input type="number" id="experience" name="experience" min="0" max="60" required />
+      <div class="error" id="experienceError"></div>
+
+      <label for="facultyEmail">Email Address:</label>
+      <input type="email" id="facultyEmail" name="facultyEmail" />
+      <div class="error" id="facultyEmailError"></div>
+
+      <label for="facultyPhone">Phone Number:</label>
+      <input type="tel" id="facultyPhone" name="facultyPhone" maxlength="10" />
+      <div class="error" id="facultyPhoneError"></div>
+
+      <label for="facultyAddress">Address:</label>
+      <textarea id="facultyAddress" name="facultyAddress" rows="4"></textarea>
+
+      <input type="submit" value="Submit" />
+      <input type="reset" value="Reset" />
+    </form>
+  </div>
+
+  <script>
+    // Tab switching
+    function openForm(evt, formName) {
+      const tabcontents = document.querySelectorAll('.tabcontent');
+      tabcontents.forEach(tc => tc.style.display = 'none');
+
+      const tablinks = document.querySelectorAll('.tab button');
+      tablinks.forEach(btn => btn.classList.remove('active'));
+
+      document.getElementById(formName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+
+    // Helper: validate phone number is digits and length=10
+    function validatePhone(phone) {
+      return /^\d{10}$/.test(phone);
+    }
+
+    // Clear all error messages in a form
+    function clearErrors(form) {
+      const errors = form.querySelectorAll('.error');
+      errors.forEach(e => e.textContent = '');
+    }
+
+    // Show error message
+    function showError(id, msg) {
+      document.getElementById(id).textContent = msg;
+    }
+
+    // Form validation and submit handling
+    function handleFormSubmit(event, formType) {
+      event.preventDefault();
+      const form = event.target;
+      clearErrors(form);
+
+      let valid = true;
+
+      // Common checks for all forms
+      // Different fields per form, so check accordingly
+
+      if (formType === 'Student') {
+        const name = form.studentName.value.trim();
+        const id = form.studentId.value.trim();
+        const dob = form.dob.value;
+        const gender = form.gender.value;
+        const email = form.studentEmail.value.trim();
+        const phone = form.studentPhone.value.trim();
+
+        if (name === '') {
+          showError('studentNameError', 'Full Name is required.');
+          valid = false;
+        }
+        if (id === '') {
+          showError('studentIdError', 'Student ID is required.');
+          valid = false;
+        }
+        if (dob === '') {
+          showError('dobError', 'Date of Birth is required.');
+          valid = false;
+        }
+        if (gender === '') {
+          showError('genderError', 'Please select a gender.');
+          valid = false;
+        }
+        if (email && !form.studentEmail.checkValidity()) {
+          showError('studentEmailError', 'Please enter a valid email address.');
+          valid = false;
+        }
+        if (phone && !validatePhone(phone)) {
+          showError('studentPhoneError', 'Phone must be 10 digits.');
+          valid = false;
+        }
+
+        if (valid) {
+          alert(`Student details submitted:\n
+Full Name: ${name}
+Student ID: ${id}
+DOB: ${dob}
+Gender: ${gender}
+Email: ${email || 'N/A'}
+Phone: ${phone || 'N/A'}
+Department: ${form.departmentStudent.value.trim() || 'N/A'}
+Course: ${form.course.value.trim() || 'N/A'}`);
+          form.reset();
+        }
+
+      } else if (formType === 'Employee') {
+        const empId = form.empId.value.trim();
+        const name = form.empName.value.trim();
+        const dept = form.departmentEmp.value.trim();
+        const designation = form.designation.value.trim();
+        const email = form.empEmail.value.trim();
+        const phone = form.empPhone.value.trim();
+
+        if (empId === '') {
+          showError('empIdError', 'Employee ID is required.');
+          valid = false;
+        }
+        if (name === '') {
+          showError('empNameError', 'Full Name is required.');
+          valid = false;
+        }
+        if (dept === '') {
+          showError('departmentEmpError', 'Department is required.');
+          valid = false;
+        }
+        if (designation === '') {
+          showError('designationError', 'Designation is required.');
+          valid = false;
+        }
+        if (email && !form.empEmail.checkValidity()) {
+          showError('empEmailError', 'Please enter a valid email address.');
+          valid = false;
+        }
+        if (phone && !validatePhone(phone)) {
+          showError('empPhoneError', 'Phone must be 10 digits.');
+          valid = false;
+        }
+
+        if (valid) {
+          alert(`Employee details submitted:\n
+Employee ID: ${empId}
+Full Name: ${name}
+Department: ${dept}
+Designation: ${designation}
+Email: ${email || 'N/A'}
+Phone: ${phone || 'N/A'}`);
+          form.reset();
+        }
+
+      } else if (formType === 'Faculty') {
+        const facId = form.facultyId.value.trim();
+        const name = form.facultyName.value.trim();
+        const specialization = form.specialization.value.trim();
+        const experience = form.experience.value.trim();
+        const email = form.facultyEmail.value.trim();
+        const phone = form.facultyPhone.value.trim();
+
+        if (facId === '') {
+          showError('facultyIdError', 'Faculty ID is required.');
+          valid = false;
+        }
+        if (name === '') {
+          showError('facultyNameError', 'Full Name is required.');
+          valid = false;
+        }
+        if (specialization === '') {
+          showError('specializationError', 'Specialization is required.');
+          valid = false;
+        }
+        if (experience === '') {
+          showError('experienceError', 'Years of Experience is required.');
+          valid = false;
+        } else if (isNaN(experience) || experience < 0 || experience > 60) {
+          showError('experienceError', 'Experience must be a number between 0 and 60.');
+          valid = false;
+        }
+        if (email && !form.facultyEmail.checkValidity()) {
+          showError('facultyEmailError', 'Please enter a valid email address.');
+          valid = false;
+        }
+        if (phone && !validatePhone(phone)) {
+          showError('facultyPhoneError', 'Phone must be 10 digits.');
+          valid = false;
+        }
+
+        if (valid) {
+          alert(`Faculty details submitted:\n
+Faculty ID: ${facId}
+Full Name: ${name}
+Specialization: ${specialization}
+Experience: ${experience} years
+Email: ${email || 'N/A'}
+Phone: ${phone || 'N/A'}`);
+          form.reset();
+        }
+      }
+    }
+
+    // Attach submit handlers
+    document.getElementById('studentForm').addEventListener('submit', (e) => handleFormSubmit(e, 'Student'));
+    document.getElementById('employeeForm').addEventListener('submit', (e) => handleFormSubmit(e, 'Employee'));
+    document.getElementById('facultyForm').addEventListener('submit', (e) => handleFormSubmit(e, 'Faculty'));
+
+  </script>
+
+</body>
+</html>
